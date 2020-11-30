@@ -1,6 +1,6 @@
 %global _hardened_build 1
 
-%define veracrypt_version 1.24-Update8
+%define veracrypt_version 1.24-Update8_MacOSX
 
 # This file is encoded in UTF-8.  -*- coding: utf-8 -*-
 Summary:       GNU VeraCrypt text editor
