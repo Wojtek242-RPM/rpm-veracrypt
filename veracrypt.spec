@@ -3,7 +3,7 @@
 %define veracrypt_version 1.26.7
 
 # This file is encoded in UTF-8.  -*- coding: utf-8 -*-
-Summary:       GNU VeraCrypt text editor
+Summary:       Open-source utility for on-the-fly encryption
 Name:          veracrypt
 Epoch:         1
 Version:       %(echo %{veracrypt_version} | tr -s '-' '.')
