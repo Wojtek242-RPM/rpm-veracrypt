@@ -11,19 +11,20 @@ Release:       1%{?dist}
 License:       ASL 2.0 and TrueCrypt License 3.0
 URL:           https://www.veracrypt.fr/en/Home.html
 Source0:       https://www.veracrypt.fr/code/VeraCrypt/snapshot/VeraCrypt-VeraCrypt_%{veracrypt_version}.tar.gz
+Source1:       https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.4/wxWidgets-3.2.4.tar.bz2
 Patch1:        make-flags.patch
 
 BuildRequires: fuse-devel
 BuildRequires: gcc-c++
+BuildRequires: gtk2-devel
 BuildRequires: make
 BuildRequires: pcsc-lite-devel
 BuildRequires: pkgconf-pkg-config
-BuildRequires: wxGTK3-devel
 BuildRequires: yasm
 
 Requires:      fuse-libs
+Requires:      gtk2
 Requires:      pcsc-lite-libs
-Requires:      wxGTK3
 Provides:      veracrypt(bin) = %{epoch}:%{version}-%{release}
 
 %description
@@ -31,11 +32,14 @@ VeraCrypt is a free open source disk encryption software for Windows, Mac OSX an
 you by IDRIX (https://www.idrix.fr) and based on TrueCrypt 7.1a.
 
 %prep
+tar -xf '%{SOURCE1}'
 %autosetup -p2 -n VeraCrypt-VeraCrypt_%{veracrypt_version}/src
 
 %build
 %set_build_flags
-%make_build NOSTRIP=1
+# LDFLAGS is unset as otherwise the wxWidgets cross-compile check fails for some reason.
+%make_build WXSTATIC=1 WX_ROOT=%{_builddir}/wxWidgets-3.2.4 LDFLAGS= wxbuild
+%make_build WXSTATIC=1 NOSTRIP=1
 
 %install
 %make_install
@@ -54,5 +58,8 @@ rm -f %{buildroot}%{_bindir}/veracrypt-uninstall.sh
 %doc %{_datadir}/doc/veracrypt/HTML/*
 
 %changelog
+* Wed Dec 13 2023 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.26.7
+- Update spec file
+
 * Sun Nov 22 2020 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.24.Update7-1
 - Initial spec file
