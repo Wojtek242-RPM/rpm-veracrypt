@@ -16,11 +16,13 @@ Patch1:        make-flags.patch
 BuildRequires: fuse-devel
 BuildRequires: gcc-c++
 BuildRequires: make
+BuildRequires: pcsc-lite-devel
 BuildRequires: pkgconf-pkg-config
 BuildRequires: wxGTK3-devel
 BuildRequires: yasm
 
 Requires:      fuse-libs
+Requires:      pcsc-lite-libs
 Requires:      wxGTK3
 Provides:      veracrypt(bin) = %{epoch}:%{version}-%{release}
 
@@ -43,8 +45,11 @@ rm -f %{buildroot}%{_bindir}/veracrypt-uninstall.sh
 
 %files
 %{_bindir}/veracrypt
+%{_sbindir}/mount.veracrypt
 %{_datadir}/applications/veracrypt.desktop
+%{_datadir}/mime/packages/veracrypt.xml
 %{_datadir}/pixmaps/veracrypt.xpm
+%{_datadir}/veracrypt/languages/Language.*.xml
 %license %{_datadir}/doc/veracrypt/License.txt
 %doc %{_datadir}/doc/veracrypt/HTML/*
 

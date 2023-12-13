@@ -1,5 +1,5 @@
 diff --git a/src/Makefile b/src/Makefile
-index a1e1e43b..a0493fd8 100644
+index 4bea83b4..a0233be2 100644
 --- a/src/Makefile
 +++ b/src/Makefile
 @@ -43,11 +43,11 @@ export CXX ?= g++
@@ -15,5 +15,5 @@ index a1e1e43b..a0493fd8 100644
 -export LFLAGS :=
 +export LFLAGS := ${LDFLAGS}
  
+ export PKG_CONFIG ?= pkg-config
  export PKG_CONFIG_PATH ?= /usr/local/lib/pkgconfig
- 
