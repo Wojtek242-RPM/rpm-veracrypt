@@ -11,7 +11,8 @@ jobs:
     - uses: actions/checkout@master
     - name: Check and update
       run: |
-        ./check-and-update.sh
+        ./check-and-update-wxwidgets.sh
+        ./check-and-update-veracrypt.sh
         if git diff --exit-code; then
           echo "Nothing to commit, working tree clean"
         else

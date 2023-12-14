@@ -1,6 +1,7 @@
 %global _hardened_build 1
 
 %define veracrypt_version 1.26.7
+%define wxwidgets_version 3.2.4
 
 # This file is encoded in UTF-8.  -*- coding: utf-8 -*-
 Summary:       Open-source utility for on-the-fly encryption
@@ -11,7 +12,7 @@ Release:       1%{?dist}
 License:       ASL 2.0 and TrueCrypt License 3.0
 URL:           https://www.veracrypt.fr/en/Home.html
 Source0:       https://www.veracrypt.fr/code/VeraCrypt/snapshot/VeraCrypt-VeraCrypt_%{veracrypt_version}.tar.gz
-Source1:       https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.4/wxWidgets-3.2.4.tar.bz2
+Source1:       https://github.com/wxWidgets/wxWidgets/releases/download/v%{wxwidgets_version}/wxWidgets-%{wxwidgets_version}.tar.bz2
 Patch1:        make-flags.patch
 
 BuildRequires: fuse-devel
@@ -38,7 +39,7 @@ tar -xf '%{SOURCE1}'
 %build
 %set_build_flags
 # LDFLAGS is unset as otherwise the wxWidgets cross-compile check fails for some reason.
-%make_build WXSTATIC=1 WX_ROOT=%{_builddir}/wxWidgets-3.2.4 LDFLAGS= wxbuild
+%make_build WXSTATIC=1 WX_ROOT=%{_builddir}/wxWidgets-%{wxwidgets_version} LDFLAGS= wxbuild
 %make_build WXSTATIC=1 NOSTRIP=1
 
 %install
@@ -58,6 +59,9 @@ rm -f %{buildroot}%{_bindir}/veracrypt-uninstall.sh
 %doc %{_datadir}/doc/veracrypt/HTML/*
 
 %changelog
+* Thu Dec 14 2023 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.26.7
+- Fix versioning
+
 * Wed Dec 13 2023 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.26.7
 - Update spec file
 
