@@ -1,14 +1,14 @@
 %global _hardened_build 1
 
 %define veracrypt_version 1.26.7
-%define wxwidgets_version 3.2.4
+%define wxwidgets_version 3.2.5
 
 # This file is encoded in UTF-8.  -*- coding: utf-8 -*-
 Summary:       Open-source utility for on-the-fly encryption
 Name:          veracrypt
 Epoch:         1
 Version:       %(echo %{veracrypt_version} | tr -s '-' '.')
-Release:       1%{?dist}
+Release:       2%{?dist}
 License:       ASL 2.0 and TrueCrypt License 3.0
 URL:           https://www.veracrypt.fr/en/Home.html
 Source0:       https://www.veracrypt.fr/code/VeraCrypt/snapshot/VeraCrypt-VeraCrypt_%{veracrypt_version}.tar.gz
