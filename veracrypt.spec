@@ -48,8 +48,12 @@ tar -xf '%{SOURCE1}'
 # We manage the installation through the package manager.
 rm -f %{buildroot}%{_bindir}/veracrypt-uninstall.sh
 
+# In F42+ _sbindir points to _bindir but the VeraCrypt scripts still put things in usr/sbin.
+mv %{buildroot}/usr/sbin/* %{buildroot}%{_bindir}
+
 %files
 %{_bindir}/veracrypt
+# Keep _sbindir so the old builds don't complain.
 %{_sbindir}/mount.veracrypt
 %{_datadir}/applications/veracrypt.desktop
 %{_datadir}/mime/packages/veracrypt.xml
@@ -59,6 +63,9 @@ rm -f %{buildroot}%{_bindir}/veracrypt-uninstall.sh
 %doc %{_datadir}/doc/veracrypt/HTML/*
 
 %changelog
+* Sun Apr 04 2025 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.26.7
+- Fix _sbindir issue for F42
+
 * Thu Dec 14 2023 Wojciech Kozlowski <wk@wojciechkozlowski.eu> 1.26.7
 - Fix versioning
 
