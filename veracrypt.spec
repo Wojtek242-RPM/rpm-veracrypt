@@ -53,8 +53,7 @@ mv %{buildroot}/usr/sbin/* %{buildroot}%{_bindir}
 
 %files
 %{_bindir}/veracrypt
-# Keep _sbindir so the old builds don't complain.
-%{_sbindir}/mount.veracrypt
+%{_bindir}/mount.veracrypt
 %{_datadir}/applications/veracrypt.desktop
 %{_datadir}/mime/packages/veracrypt.xml
 %{_datadir}/pixmaps/veracrypt.xpm
