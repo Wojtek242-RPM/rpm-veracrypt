@@ -11,7 +11,7 @@ Version:       %(echo %{veracrypt_version} | tr -s '-' '.')
 Release:       1%{?dist}
 License:       ASL 2.0 and TrueCrypt License 3.0
 URL:           https://www.veracrypt.fr/en/Home.html
-Source0:       https://www.veracrypt.fr/code/VeraCrypt/snapshot/VeraCrypt-VeraCrypt_%{veracrypt_version}.tar.gz
+Source0:       https://launchpad.net/veracrypt/trunk/%{veracrypt_version}/+download/VeraCrypt_%{veracrypt_version}_Source.tar.bz2
 Source1:       https://github.com/wxWidgets/wxWidgets/releases/download/v%{wxwidgets_version}/wxWidgets-%{wxwidgets_version}.tar.bz2
 Patch1:        make-flags.patch
 
